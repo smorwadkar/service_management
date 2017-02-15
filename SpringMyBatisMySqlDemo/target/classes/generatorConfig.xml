@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="C:\Users\smorwadkar\.m2\repository\mysql\mysql-connector-java\5.1.37\mysql-connector-java-5.1.37.jar"/>
+  <context id="context1" targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+    	<property name="targetPackage" value="com.service.manager.user.persistence.mapper"/>
+    	<property name="targetProject" value="SpringMyBatisMySqlDemo"/>
+    	<property name="fileName" value="MapperConfig.xml"/>
+    </plugin> 
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/servicemanagement" userId="root" password="password" />
+    <javaModelGenerator  targetPackage="com.service.manager.user.persistence"    targetProject="C:\Environment\POC\myworkspace\projects\SpringMyBatisMySqlDemo\src\main\java" />
+    <sqlMapGenerator     targetPackage="com.service.manager.user.persistence.mapper"    targetProject="C:\Environment\POC\myworkspace\projects\SpringMyBatisMySqlDemo\src\main\java" />
+    <javaClientGenerator targetPackage="com.service.manager.user.persistence.mapper"    targetProject="C:\Environment\POC\myworkspace\projects\SpringMyBatisMySqlDemo\src\main\java" type="XMLMAPPER" />
+
+    <table tableName="user" ></table>
+    <table tableName="address"></table>
+    <table tableName="user_addresses"></table>
+    <table tableName="product_category"></table>
+    <table tableName="product_sub_category"></table>
+    <table tableName="product_type"></table>
+    <table tableName="category_sub_category"></table>
+    <table tableName="sub_category_type"></table>
+    <table tableName="product"></table>
+    <table tableName="complaints"></table>
+    <table tableName="request_details"></table>
+  </context>
+</generatorConfiguration>
+
