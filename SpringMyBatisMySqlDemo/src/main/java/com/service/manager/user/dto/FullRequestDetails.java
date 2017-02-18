@@ -4,9 +4,18 @@ import com.service.manager.user.persistence.Complaints;
 import com.service.manager.user.persistence.User;
 
 public class FullRequestDetails {
+	private Integer requestId;
 	private User userId;
 	private Complaints complaint;
 	private FullProductDetails fullProductDetails;
+	
+	
+	public Integer getRequestId() {
+		return requestId;
+	}
+	public void setRequestId(Integer requestId) {
+		this.requestId = requestId;
+	}
 	public User getUserId() {
 		return userId;
 	}

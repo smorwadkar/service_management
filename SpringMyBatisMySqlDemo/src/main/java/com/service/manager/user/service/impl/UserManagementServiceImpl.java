@@ -1,6 +1,7 @@
 package com.service.manager.user.service.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,23 +10,23 @@ import com.service.manager.user.dto.UserDetails;
 import com.service.manager.user.exception.UserManagementException;
 import com.service.manager.user.persistence.Address;
 import com.service.manager.user.persistence.User;
-import com.service.manager.user.repository.impl.UserRepositoryImpl;
+import com.service.manager.user.repository.UserRepository;
 import com.service.manager.user.service.UserManagementService;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService{
 	
 	@Autowired
-	UserRepositoryImpl userRepositoryImpl;
+	UserRepository userRepository;
 	
 	@Override
 	public int insertUser(UserDetails userDetails) throws UserManagementException {
-		return userRepositoryImpl.insertUser(populateUserFromDetails(userDetails));
+		return userRepository.insertUser(populateUserFromDetails(userDetails));
 	}
 
 	@Override
 	public boolean checkUserName(String userName) {
-		return userRepositoryImpl.checkUsername(userName);
+		return userRepository.checkUsername(userName);
 	}
 	
 
@@ -50,8 +51,13 @@ public class UserManagementServiceImpl implements UserManagementService{
 
 	@Override
 	public User authenticateUser(Long userMobileNo, CharSequence password) throws UserManagementException {
-		User authenticatedUser = userRepositoryImpl.authenticateUser(userMobileNo, password);
+		User authenticatedUser = userRepository.authenticateUser(userMobileNo, password);
 		return authenticatedUser;
+	}
+
+	@Override
+	public List<User> selectUserByMobileNo(Long mobileNo) {
+		return userRepository.selectUserByMobileNo(mobileNo);
 	}
 	
 }

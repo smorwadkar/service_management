@@ -20,47 +20,11 @@ import com.service.manager.user.persistence.Product;
 import com.service.manager.user.persistence.ProductCategory;
 import com.service.manager.user.persistence.ProductSubCategory;
 import com.service.manager.user.persistence.ProductType;
-import com.service.manager.user.persistence.mapper.CategorySubCategoryMapper;
-import com.service.manager.user.persistence.mapper.ProductCategoryMapper;
-import com.service.manager.user.persistence.mapper.ProductSubCategoryMapper;
-import com.service.manager.user.persistence.mapper.ProductTypeMapper;
-import com.service.manager.user.persistence.mapper.SubCategoryTypeMapper;
-import com.service.manager.user.repository.ProductCategoryRepository;
-import com.service.manager.user.repository.ProductRepository;
-import com.service.manager.user.repository.ProductSubCategoryRepository;
-import com.service.manager.user.repository.ProductTypeRepository;
 import com.service.manager.user.service.ProductManagementService;
 
 @RestController
 @RequestMapping("/api/product")
 public class ProductManagementController {
-	
-	@Autowired
-	ProductTypeRepository productTypeRepository;
-	
-	@Autowired
-	ProductSubCategoryRepository productSubCategoryRepository;
-	
-	@Autowired
-	ProductCategoryRepository productCategoryRepository;
-	
-	@Autowired
-	ProductRepository productRepository;
-	
-	@Autowired
-	ProductTypeMapper productTypeMapper;
-	
-	@Autowired
-	ProductSubCategoryMapper productSubCategoryMapper;
-	
-	@Autowired
-	ProductCategoryMapper productCategoryMapper;
-	
-	@Autowired
-	CategorySubCategoryMapper categorySubCategoryMapper;
-	
-	@Autowired
-	SubCategoryTypeMapper subCategoryTypeMapper; 
 	
 	@Autowired
 	ProductManagementService productManagementService;

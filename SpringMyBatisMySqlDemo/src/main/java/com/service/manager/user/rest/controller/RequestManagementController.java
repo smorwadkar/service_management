@@ -1,7 +1,5 @@
 package com.service.manager.user.rest.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.manager.user.dto.ComplaintsDetails;
-import com.service.manager.user.dto.FullProductDetails;
 import com.service.manager.user.dto.FullRequestDetails;
-import com.service.manager.user.persistence.Complaints;
-import com.service.manager.user.persistence.ComplaintsExample;
-import com.service.manager.user.persistence.Product;
 import com.service.manager.user.persistence.RequestDetails;
-import com.service.manager.user.persistence.User;
-import com.service.manager.user.persistence.UserExample;
 import com.service.manager.user.persistence.mapper.ComplaintsMapper;
 import com.service.manager.user.persistence.mapper.ProductCategoryMapper;
 import com.service.manager.user.persistence.mapper.ProductMapper;
@@ -28,6 +19,7 @@ import com.service.manager.user.persistence.mapper.ProductTypeMapper;
 import com.service.manager.user.persistence.mapper.RequestDetailsMapper;
 import com.service.manager.user.persistence.mapper.UserMapper;
 import com.service.manager.user.service.ProductManagementService;
+import com.service.manager.user.service.RequestManagementService;
 
 @RestController
 @RequestMapping("/api/request")
@@ -56,6 +48,9 @@ public class RequestManagementController {
 	
 	@Autowired
 	ProductCategoryMapper productCategoryMapper;
+	
+	@Autowired
+	RequestManagementService requestManagementService;
 
 	@RequestMapping(value = "/createRequest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public RequestDetails createRequest(@RequestParam("userId") Long userMobileNo,
@@ -64,8 +59,10 @@ public class RequestManagementController {
 			@RequestParam("categoryName") String categoryName,
 			@RequestParam("subCategoryName") String subCategoryName,
 			@RequestParam("typeName") String typeName) {
-		// Add Conmplaint
-
+	
+		return requestManagementService.createRequest(userMobileNo, comments, complaintStatus, categoryName, subCategoryName, typeName);
+		
+/*		// Add Conmplaint
 		ComplaintsDetails complaintsDetails = new ComplaintsDetails();
 		complaintsDetails.setComments(comments);
 		complaintsDetails.setComplaintStatus(complaintStatus);
@@ -83,8 +80,8 @@ public class RequestManagementController {
 				.andLastUpdateDateEqualTo(complaintsDetails.getLastUpdateTime());
 
 		List<Complaints> complants = complaintsMapper.selectByExample(complaintsExample);
-		/*List<Complaints> complants = complaintsMapper
-				.getComplaintByDetails(comments, complaintStatus, getDateForDB(complaintsDetails.getCreationTime()), getDateForDB(complaintsDetails.getLastUpdateTime()));*/
+		List<Complaints> complants = complaintsMapper
+				.getComplaintByDetails(comments, complaintStatus, getDateForDB(complaintsDetails.getCreationTime()), getDateForDB(complaintsDetails.getLastUpdateTime()));
 		
 		UserExample userExample = new UserExample();
 		userExample.createCriteria().andMobileNoEqualTo(userMobileNo);
@@ -102,30 +99,18 @@ public class RequestManagementController {
 
 		requestDetailsMapper.insert(requestDetails);
 
-		/*
+		
 		 * RequestDetailsExample requestDetailsExample = new
 		 * RequestDetailsExample();
 		 * requestDetailsExample.createCriteria().andRequestIdEqualTo
 		 * (requestDetails.getRequestId());
-		 */
+		 
 
 		// requestDetailsMapper.selectByPrimaryKey(requestDetails.getRequestId());
 		
 
 		return requestDetailsMapper.selectByPrimaryKey(requestDetails
-				.getRequestId());
-	}
-
-	private Complaints populateComplaint(ComplaintsDetails complaintsDetails) {
-		Complaints complaints = new Complaints();
-		complaints.setComments(complaintsDetails.getComments());
-		complaints.setComplaintStatus(complaintsDetails.getComplaintStatus());
-		complaints.setCreateDate(complaintsDetails
-				.getCreationTime());
-		complaints.setLastUpdateDate(complaintsDetails
-				.getLastUpdateTime());
-
-		return complaints;
+				.getRequestId());*/
 	}
 
 	/*
@@ -141,7 +126,9 @@ public class RequestManagementController {
 	@RequestMapping(value = "/allRequests" , method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FullRequestDetails> getAllRequests(){
 		
-		List<RequestDetails> requestDetailsList = requestDetailsMapper.fetchAllRequestDetails();
+		return requestManagementService.getAllRequests();
+		
+		/*List<RequestDetails> requestDetailsList = requestDetailsMapper.fetchAllRequestDetails();
 		
 		List<FullRequestDetails> fullRequestDetailsList = new ArrayList<FullRequestDetails>();
 		
@@ -165,14 +152,16 @@ public class RequestManagementController {
 			fullRequestDetailsList.add(fullRequestDetails);
 		}
 		
-		return fullRequestDetailsList;
+		return fullRequestDetailsList;*/
 	}
 	
 	
 	@RequestMapping(value = "/allRequestsForUser" , method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<FullRequestDetails> getAllRequestsForUser(@RequestParam("userMobileNo") Long userMobileNo){
 		
-		List<RequestDetails> requestDetailsList = requestDetailsMapper.fetchAllRequestDetailsForUser(userMobileNo);
+		return requestManagementService.getAllRequestsForUser(userMobileNo);
+		
+		/*List<RequestDetails> requestDetailsList = requestDetailsMapper.fetchAllRequestDetailsForUser(userMobileNo);
 		
 		List<FullRequestDetails> fullRequestDetailsList = new ArrayList<FullRequestDetails>();
 		
@@ -196,6 +185,13 @@ public class RequestManagementController {
 			fullRequestDetailsList.add(fullRequestDetails);
 		}
 		
-		return fullRequestDetailsList;
+		return fullRequestDetailsList;*/
+	}
+	
+	@RequestMapping(value = "/requestDetailsById" , method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public FullRequestDetails getRequestDetailsById(@RequestParam("requestId") Integer requestId){
+		
+		return requestManagementService.getRequestDetailsById(requestId);
+		
 	}
 }

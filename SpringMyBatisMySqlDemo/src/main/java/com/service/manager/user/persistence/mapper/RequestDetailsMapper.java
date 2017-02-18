@@ -97,4 +97,5 @@ public interface RequestDetailsMapper {
     List<RequestDetails> fetchAllRequestDetails();
     
     List<RequestDetails> fetchAllRequestDetailsForUser(@Param("userMobileNo") Long userMobileNo);
+    
 }

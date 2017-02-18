@@ -80,4 +80,13 @@ public class UserRepositoryImpl implements UserRepository {
 		
 	}
 
+	@Override
+	public List<User> selectUserByMobileNo(Long mobileNo) {
+
+		UserExample userExample = new UserExample();
+		userExample.createCriteria().andMobileNoEqualTo(mobileNo);
+
+		return userMapper.selectByExample(userExample);
+	}
+
 }
