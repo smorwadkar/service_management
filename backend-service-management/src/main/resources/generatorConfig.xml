@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="C:\Users\smorwadkar\.m2\repository\vertica-jdbc\vertica-jdbc\8.0.0\vertica-jdbc-8.0.0.jar"/>
+  <context id="context1" targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+    	<property name="targetPackage" value="com.nice.fizzback.responsemanager.persistence.mapper"/>
+    	<property name="targetProject" value="dashboard-services"/>
+    	<property name="fileName" value="MapperConfig.xml"/>
+    </plugin> 
+
+    <jdbcConnection driverClass="com.vertica.jdbc.Driver" connectionURL="jdbc:vertica://172.30.17.11:5433/voc175_auto_qacustomer" userId="voc175_auto_qacustomer" password="dbadmin" />
+    <javaModelGenerator  targetPackage="com.nice.fizzback.responsemanager.persistence"    targetProject="C:\Users\smorwadkar\Desktop\verticaCode\Alertfacts\src\main\java" />
+    <sqlMapGenerator     targetPackage="com.nice.fizzback.responsemanager.persistence.mapper"    targetProject="C:\Users\smorwadkar\Desktop\verticaCode\Alertfacts\src\main\java" />
+    <javaClientGenerator targetPackage="com.nice.fizzback.responsemanager.persistence.mapper"    targetProject="C:\Users\smorwadkar\Desktop\verticaCode\Alertfacts\src\main\java" type="XMLMAPPER" />
+
+    <table tableName="Alert_Fact" ></table>
+  </context>
+</generatorConfiguration>
+
