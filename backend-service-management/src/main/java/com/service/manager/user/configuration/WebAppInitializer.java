@@ -3,6 +3,7 @@ package com.service.manager.user.configuration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 
@@ -31,9 +32,22 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     @Override
     public void onStartup(ServletContext servletContext) 
             throws ServletException {
-
+//    	this.createFilters(servletContext);
         super.onStartup(servletContext);
     }
     
+    /**
+     * This method creates filters and adds them to {@code ServletContext}
+     * 
+     * @param servletContext
+     *            {@code ServletContext} instance
+     */
+    private void createFilters(final ServletContext servletContext) {
+	// add backend proxy filter
+	
+	/*servletContext.addFilter("springSecurityFilterChain", new DelegatingFilterProxy("springSecurityFilterChain"))
+		.addMappingForUrlPatterns(null, false, "/*");*/
+
+    }
 
 }

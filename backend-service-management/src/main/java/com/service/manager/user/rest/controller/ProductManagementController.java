@@ -65,6 +65,11 @@ public class ProductManagementController {
 		return productManagementService.getProductTypes(subCategoryId);
 	}
 	
+	/*@RequestMapping(value = "/updateProduct/{productId}" ,method = RequestMethod.POST ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody FullProductDetails updateProductDetails(@RequestBody FullProductDetails){
+		
+	}*/
+	
 	private ProductType populateProductType(ProductTypeDetails productTypeDetails){
 		ProductType productType = new ProductType();
 		productType.setTypeName(productTypeDetails.getProductTypeName());
