@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="helloApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<script type="text/javascript" src="scripts/angular.min.js"></script>
+<script type="text/javascript" src="scripts/angular-resource.js"></script>
+<script type="text/javascript" src="scripts/angular-route.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="scripts/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/login.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="scripts/bootstrap-3.3.7-dist/css/bootstrap-theme.css" />
+<link rel="stylesheet" type="text/css"
+	href="scripts/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map" />
+<link rel="stylesheet" type="text/css"
+	href="scripts/bootstrap-3.3.7-dist/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css"
+	href="scripts/bootstrap-3.3.7-dist/css/bootstrap.css.map" />
+</head>
+<body ng-controller="HttpController">
+<form ng-submit="authenticate()">
+<div class="navbar-form navbar-bottom">
+	<div class="navbar-form">
+		<div class="form-group row">
+				<label for="usernameId">Email address</label> 
+				<input type="text" ng-model="username"
+				class="form-control" id="usernameId" placeholder="Enter Username">
+		</div>
+		<div class="form-group row">
+				<label for="passwordId">Email address</label> 
+				<input type="password" ng-model="password"
+				class="form-control" id="passwordId" placeholder="Enter Password">
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</div>
+</form>
+</body>
+</html>

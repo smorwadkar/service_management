@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+  <classPathEntry location="C:\Users\smorwadkar\.m2\repository\mysql\mysql-connector-java\5.1.37\mysql-connector-java-5.1.37.jar"/>
+  <context id="context1" targetRuntime="MyBatis3">
+    <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin">
+    	<property name="targetPackage" value="com.sajag.manager.persistence.mapper"/>
+    	<property name="targetProject" value="sajag-complaints-management"/>
+    	<property name="fileName" value="MapperConfig.xml"/>
+    </plugin> 
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/sajag_db" userId="root" password="password" />
+    <javaModelGenerator  targetPackage="com.sajag.manager.persistence"    targetProject="C:\Environment\POC\myworkspace\projects\sajag-complaints-management\src\main\java" />
+    <sqlMapGenerator     targetPackage="com.sajag.manager.persistence.mapper"    targetProject="C:\Environment\POC\myworkspace\projects\sajag-complaints-management\src\main\java" />
+    <javaClientGenerator targetPackage="com.sajag.manager.persistence.mapper"    targetProject="C:\Environment\POC\myworkspace\projects\sajag-complaints-management\src\main\java" type="XMLMAPPER" />
+
+    <table tableName="user" ></table>
+    <table tableName="complaints" ></table>
+    <table tableName="images" ></table>
+    <table tableName="complaint_images" ></table>
+    <table tableName="user_complaints" ></table>
+    <table tableName="departments" ></table>
+  </context>
+</generatorConfiguration>
+
