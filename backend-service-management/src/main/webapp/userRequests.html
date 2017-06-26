@@ -1,0 +1,59 @@
+<div class="container-fluid">
+	<div class="panel panel-primary wrapper">
+		<div class="panel-heading">
+			<h3 class="panel-title">User Requests</h3>
+		</div>
+		<div class="panel-body" style="text-align: center;">
+			<!-- <table class="table table-hover table-striped">
+				<tr>
+					<td>Request ID</td>
+					<td>Complaint Status</td>
+					<td>Comment</td>
+					<td></td>
+				</tr>
+				<tr ng-repeat="request in userRequests | orderBy:'-requestId'">
+					<td>{{ request.requestId }}</td>
+					<td>{{ request.complaint.complaintStatus }}</td>
+					<td>{{ request.complaint.comments }}</td>
+					<td>
+
+						<button type="button" class="btn btn-primary dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Manage Request <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#" ng-click="requestDetails(request.requestId)">See Details</a></li>
+							<li><a href="#">Edit Request</a></li>
+						</ul>
+
+						<button type="button" class="btn btn-primary" 
+							ng-click="requestDetails(request.requestId)">Request
+							Details</button>
+
+					</td>
+				</tr>
+			</table> -->
+			
+			<div class="container-fluid">
+				<div class="row-fluid  no-gutters">
+					<div class="col-sm-1">Request ID</div>
+					<div class="col-sm-2">Complaint Status</div>
+					<div class="col-sm-4">Comment</div>
+					<div class="col-sm-3"></div>
+				</div>
+			</div>
+			<div class="container-fluid" style="margin-bottom: 10px;" ng-repeat="request in userRequests | orderBy:'-requestId'">
+				<div class="row-fluid  no-gutters">
+					<div class="col-sm-1">{{ request.requestId }}</div>
+					<div class="col-sm-2">{{ request.complaint.complaintStatus }}</div>
+					<div class="col-sm-4">{{ request.complaint.comments }}</div>
+					<div class="col-sm-3">
+						<button type="button" class="btn btn-primary" 
+							ng-click="requestDetails(request.requestId)">Request
+							Details</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

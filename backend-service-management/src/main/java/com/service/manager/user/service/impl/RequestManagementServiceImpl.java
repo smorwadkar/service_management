@@ -77,7 +77,7 @@ public class RequestManagementServiceImpl implements RequestManagementService {
 
 		/*complaintsMapper.insert(populateComplaint(complaintsDetails));*/
 		
-		complaintsManagementService.insertComplaint(complaintsDetails);
+		int createdComplaintId = complaintsManagementService.insertComplaint(complaintsDetails);
 
 		/*ComplaintsExample complaintsExample = new ComplaintsExample();
 		complaintsExample
@@ -107,7 +107,8 @@ public class RequestManagementServiceImpl implements RequestManagementService {
 		RequestDetails requestDetails = new RequestDetails();
 		requestDetails.setProductId(product.getProductId());
 		requestDetails.setUserId(users.get(0).getUserId());
-		requestDetails.setRequestId(complants.get(0).getComplaintId());
+//		requestDetails.setRequestId(complants.get(0).getComplaintId());
+		requestDetails.setRequestId(createdComplaintId);
 
 		/*requestDetailsMapper.insert(requestDetails);*/
 

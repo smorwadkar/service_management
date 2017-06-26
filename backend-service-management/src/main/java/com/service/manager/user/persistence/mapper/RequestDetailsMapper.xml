@@ -261,7 +261,7 @@
   <select id="fetchAllRequestDetailsForUser" resultMap="BaseResultMap">
   	SELECT * FROM request_details WHERE user_id IN 
   	(
-		SELECT user_id FROM USER WHERE mobile_no = #{userMobileNo}
+		SELECT user_id FROM user WHERE mobile_no = #{userMobileNo}
 	)
   </select>
   

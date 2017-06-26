@@ -20,7 +20,8 @@ public class ComplaintsRepositoryImpl implements ComplaintsRepository{
 
 	@Override
 	public int insertComplaint(Complaints complaints) {
-		return complaintsMapper.insert(complaints);
+		complaintsMapper.insertWithKey(complaints);
+		return complaints.getComplaintId();
 	}
 
 	@Override

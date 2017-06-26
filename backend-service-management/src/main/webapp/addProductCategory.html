@@ -1,0 +1,18 @@
+<div>
+    <div class="wrapper-login">
+                        <form ng-submit="addProductCategory()" class="form-signin">
+                            <h2 class="form-signin-heading">Add Product Category</h2>
+                            <div class="form-group row">
+                                <label for="productCatrgory">Category Name</label> <input type="text"
+                                    ng-model="productCategoryName" class="form-control" id="productCatrgory"
+                                    placeholder="Enter Category Name" required="" autofocus="">
+                            </div>
+                            {{ productCategoryNameVar }}
+                            <div style="margin-left: 50px">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-primary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+</div>

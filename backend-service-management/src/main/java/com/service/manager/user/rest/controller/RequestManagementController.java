@@ -1,5 +1,6 @@
 package com.service.manager.user.rest.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.service.manager.user.dto.FullRequestDetails;
+import com.service.manager.user.persistence.Complaints;
 import com.service.manager.user.persistence.RequestDetails;
 import com.service.manager.user.persistence.mapper.ComplaintsMapper;
 import com.service.manager.user.persistence.mapper.ProductCategoryMapper;
@@ -193,5 +195,24 @@ public class RequestManagementController {
 		
 		return requestManagementService.getRequestDetailsById(requestId);
 		
+	}
+	
+	@RequestMapping(value = "/requestStatuses" , method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<String> getRequestStatusesMetaData(){
+		List<String> requestStatuses = new ArrayList<String>();
+		requestStatuses.add("Open");
+		requestStatuses.add("Closed");
+		requestStatuses.add("In Progress");
+		return requestStatuses;
+	}
+	
+	@RequestMapping(value = "/updateRequest", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void upadteRequest(@RequestParam("requestId") Integer requestId,
+			@RequestParam("complaintStatus") String complaintStatus) {
+			
+		Complaints updatedComplaint = new Complaints();
+		updatedComplaint.setComplaintId(requestId);
+		updatedComplaint.setComplaintStatus(complaintStatus);
+		complaintsMapper.updateByPrimaryKeySelective(updatedComplaint);
 	}
 }

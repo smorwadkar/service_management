@@ -98,4 +98,6 @@ public interface ComplaintsMapper {
     int updateByPrimaryKey(Complaints record);
     
     List<Complaints> getComplaintByDetails(@Param("comments") String comments,@Param("complaintStatus") String complaintStatus,@Param("createDate") Date createDate,@Param("lastUpdateDate") Date lastUpdateDate);
+    
+    int insertWithKey(@Param("complaint") Complaints complaint);
 }
