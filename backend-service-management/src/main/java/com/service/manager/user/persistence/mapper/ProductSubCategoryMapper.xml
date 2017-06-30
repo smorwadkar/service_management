@@ -229,7 +229,15 @@
 		select * from
 		product_sub_category
 	</select>
-
+	
+<!-- 	<select id="getAllSubCategories" resultMap="BaseResultMap">
+		SELECT
+			sub_cat.`sub_category_id`,
+			sub_cat.`sub_category_name`
+		FROM
+		product_sub_category sub_cat
+	</select> -->
+		
 	<select id="getCategoriesByCategoryId" resultMap="BaseResultMap">
 
 		SELECT

@@ -96,6 +96,8 @@ public interface ProductSubCategoryMapper {
     
     List<ProductSubCategory> getAllSubCategories();
     
+    List<ProductSubCategory>  getAllCategories();
+    
     List<ProductSubCategory> getCategoriesByCategoryId(@Param("categoryId") Integer categoryId);
     
     List<ProductSubCategory> getCategoriesByCategoryName();

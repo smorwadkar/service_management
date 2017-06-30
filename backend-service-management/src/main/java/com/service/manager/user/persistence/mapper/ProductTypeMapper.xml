@@ -218,6 +218,17 @@
 		where type_id = #{typeId,jdbcType=INTEGER}
 	</update>
 
+	
+	
+	<select id="getAllProductTypes" resultMap="BaseResultMap">
+		SELECT
+		prod_type.type_id,
+		prod_type.`type_name`
+
+		FROM
+		product_type prod_type
+	</select>
+
 	<select id="getProductTypesBySubCategoryId" resultMap="BaseResultMap">
 		SELECT
 		prod_type.type_id,

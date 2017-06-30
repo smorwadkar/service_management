@@ -22,9 +22,13 @@ public interface ProductManagementService {
 	
 	public List<ProductCategory> getAllCategories();
 	
+	public List<ProductSubCategory> getAllSubCategories();
+	
 	public List<ProductSubCategory> getSubCategories(String categoryId);
 	
 	public List<ProductType> getProductTypes(String subCategoryId);
 	
 	public Product getProductFromDetails();
+
+	public List<ProductType> getProductTypes();
 }

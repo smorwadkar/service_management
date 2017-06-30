@@ -55,9 +55,19 @@ public class ProductManagementController {
 		return productManagementService.getAllCategories();
 	}
 	
+	@RequestMapping(value = "/allSubCategories" ,method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<ProductSubCategory> getAllSubCategories(){
+		return productManagementService.getAllSubCategories();
+	}
+	
 	@RequestMapping(value = "/allSubCategories/{categoryId}" ,method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<ProductSubCategory> getSubCategories(@PathVariable("categoryId") String categoryId){
 		return productManagementService.getSubCategories(categoryId);
+	}
+	
+	@RequestMapping(value = "/allProductTypes" ,method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<ProductType> getAllProductTypes(){
+		return productManagementService.getProductTypes();
 	}
 	
 	@RequestMapping(value = "/allProductTypes/{subCategoryId}" ,method = RequestMethod.GET ,produces = MediaType.APPLICATION_JSON_VALUE)

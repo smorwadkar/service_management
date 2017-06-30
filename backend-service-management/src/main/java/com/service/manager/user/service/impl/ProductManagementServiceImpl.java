@@ -211,11 +211,21 @@ public class ProductManagementServiceImpl implements ProductManagementService {
 	}
 
 	@Override
+	public List<ProductSubCategory> getAllSubCategories() {
+		return productSubCategoryMapper.getAllSubCategories();
+	}
+	
+	@Override
 	public List<ProductSubCategory> getSubCategories(String categoryId) {
 		return productSubCategoryMapper.getCategoriesByCategoryId(Integer
 				.parseInt(categoryId));
 	}
 
+	@Override
+	public List<ProductType> getProductTypes() {
+		return productTypeMapper.getAllProductTypes();
+	}
+	
 	@Override
 	public List<ProductType> getProductTypes(String subCategoryId) {
 		return productTypeMapper.getProductTypesBySubCategoryId(Integer

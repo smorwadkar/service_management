@@ -94,5 +94,7 @@ public interface ProductTypeMapper {
      */
     int updateByPrimaryKey(ProductType record);
     
+    List<ProductType>  getAllProductTypes(); 
+    
     List<ProductType> getProductTypesBySubCategoryId(@Param("subCategoryId") Integer subCategoryId);
 }

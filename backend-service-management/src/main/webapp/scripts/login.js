@@ -2,13 +2,15 @@ var helloApp = angular.module("helloApp", []);
 
 var HttpController = function($scope, $http) {
 
+//	var server_host_ip = 'localhost';
+	var server_host_ip = '139.59.57.136';
 	$scope.userRequests = "";
 	$scope.FullRequestDetails = "";
     $scope.categoryForm = false;
 	$scope.authenticate = function () {
         
 		method = "POST";
-		url = 'http://localhost:8080/backend-service-management/api/userLogin?userMobileNo='
+		url = 'http://' +server_host_ip + ':8080/backend-service-management/api/userLogin?userMobileNo='
 				+ $scope.user.userMobileNo
 				+ '&password='
 				+ $scope.user.password;
@@ -24,7 +26,7 @@ var HttpController = function($scope, $http) {
     
     $scope.getRequests = function() {
 		method = "GET";
-		url = 'http://localhost:8080/backend-service-management//api/request/allRequestsForUser?userMobileNo='
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/request/allRequestsForUser?userMobileNo='
 				+ $scope.user.userMobileNo;
         $scope.categoryForm = false;
 		$http({
@@ -44,7 +46,8 @@ var HttpController = function($scope, $http) {
 
 	function _success(response) {
 		$scope.autheticatedUser = response.data;
-		//getRequests();
+//		$scope.userRequests = true;
+		$scope.getRequests();
 	}
 
 	function _error(response) {
@@ -73,7 +76,7 @@ var HttpController = function($scope, $http) {
 		
 		// Get Request Details by ID
 		method = "GET";
-		url = 'http://localhost:8080/backend-service-management/api/request/requestDetailsById?requestId='
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/request/requestDetailsById?requestId='
 				+ requestId;
 		
 		$http({
@@ -87,7 +90,7 @@ var HttpController = function($scope, $http) {
 		
 		// Get Request Statuses
 		method = "GET";
-		url = 'http://localhost:8080/backend-service-management/api/request/requestStatuses';
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/request/requestStatuses';
 
 		$http({
 			method : method,
@@ -96,6 +99,42 @@ var HttpController = function($scope, $http) {
 				'Content-Type' : 'application/json'
 			}
 		}).then(complaintStatus_success, complaintStatus_error);
+		
+		// Get Product Categories
+		method = "GET";
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/product/allCategories';
+
+		$http({
+			method : method,
+			url : url,
+			headers : {
+				'Content-Type' : 'application/json'
+			}
+		}).then(productCategories_success, productCategories_error);
+		
+		// Get Product Sub Categories
+		method = "GET";
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/product/allSubCategories';
+
+		$http({
+			method : method,
+			url : url,
+			headers : {
+				'Content-Type' : 'application/json'
+			}
+		}).then(productSubCategories_success, productSubCategories_error);
+		
+		// Get Product Types
+		method = "GET";
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/product/allProductTypes';
+
+		$http({
+			method : method,
+			url : url,
+			headers : {
+				'Content-Type' : 'application/json'
+			}
+		}).then(productTypes_success, productTypes_error);
 				
 	};
 
@@ -118,7 +157,34 @@ var HttpController = function($scope, $http) {
 	function complaintStatus_error(response) {
 		$scope.message = response.error;
 	}
+	
+	function productCategories_success(response) {
+		$scope.productCategories = response.data;
+		$scope.isCategoryDisabled = true;
+	}
 
+	function productCategories_error(response) {
+		$scope.message = response.error;
+	}
+
+	function productSubCategories_success(response) {
+		$scope.productSubCategories = response.data;
+		$scope.isSubCategoryDisabled = true;
+	}
+
+	function productSubCategories_error(response) {
+		$scope.message = response.error;
+	}
+	
+	function productTypes_success(response) {
+		$scope.productTypes = response.data;
+		$scope.isProductTypeDisabled = true;
+	}
+
+	function productTypes_error(response) {
+		$scope.message = response.error;
+	}
+	
 	$scope.changeRequestStatus = function(requestId,selectedComplaintStatus) {
 		console.log("Changing Request Status for request : " + requestId);
 		$scope.selectedComplaintStatus = selectedComplaintStatus;
@@ -130,7 +196,7 @@ var HttpController = function($scope, $http) {
 		}
 		
 		method = "POST";
-		url = 'http://localhost:8080/backend-service-management/api/request/updateRequest?requestId='
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/request/updateRequest?requestId='
 				+ requestId
 				+ '&complaintStatus='
 				+ selectedComplaintStatus;
@@ -145,7 +211,7 @@ var HttpController = function($scope, $http) {
 	};
 
 	function updateComplaintById_success(response) {
-		console.log("Changed Request Status for request : " + requestId);
+		console.log("Changed Request Status");
 	}
 
 	function updateComplaintById_error(response) {
@@ -161,7 +227,7 @@ var HttpController = function($scope, $http) {
             productCategoryName : $scope.productCategoryName
         };
         method = "POST";
-		url = 'http://localhost:8080/backend-service-management/api/product/addProductCategory';
+		url = 'http://'+ server_host_ip + ':8080/backend-service-management/api/product/addProductCategory';
 
 		$http({
 			method : method,
